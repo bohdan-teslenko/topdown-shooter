@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zombie Game</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Phudu:300,regular,500,600,700,800,900"
+      rel="stylesheet" />
+    <!-- Phudu font-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Orbitron:regular,500,600,700,800,900"
+      rel="stylesheet" />
+    <!-- Orbitron font-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,0,0italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic"
+      rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <!--Pause Menu -->
+      <div class="blur-background"></div>
+      <div class="tint-background"></div>
+      <div class="cancel-superpower">Exit</div>
+      <div class="menu-container">
+        <div class="menu-title__container">
+          <div class="paused-decoration"></div>
+          <div class="menu__title">Paused</div>
+          <div class="paused-decoration"></div>
+        </div>
+        <ul class="menu-list">
+          <li class="menu-list__item" id="continue">Continue</li>
+          <li class="menu-list__item" id="new-game">New Game</li>
+          <li class="menu-list__item" id="options">Options</li>
+          <li class="menu-list__item" id="menu">Menu</li>
+          <ul class="difficulty-level__list">
+            <li class="difficulty-level__item difficulty-level--selected">
+              Easy
+            </li>
+            <li class="difficulty-level__item">Medium</li>
+            <li class="difficulty-level__item">Hard</li>
+          </ul>
+          <p class="difficulty-level__now">
+            Current: <span id="currentDifficulty">Easy</span>
+          </p>
+        </ul>
+      </div>
+      <!-- Game Over Menu -->
+      <div class="game-over__window">
+        <div class="game-over__text">Game Over</div>
+        <ul class="menu-list">
+          <li class="menu-list__item" id="try-again">Try Again</li>
+          <li class="menu-list__item" id="revive">Revive</li>
+          <li class="menu-list__item" id="to-main-menu">Menu</li>
+        </ul>
+        <nav class="menu-nav">
+          <div class="menu-nav__item">
+            <div class="paused__text paused__text--killed">Killed</div>
+            <div class="pause__wrapper">
+              <img
+                src="aim-icon.svg"
+                alt="aim icon"
+                class="paused__killed-img" />
+              <span class="paused__killed"></span>
+            </div>
+          </div>
+          <div class="menu-nav__item">
+            <div class="paused__text paused__text--score">Score</div>
+            <div class="pause__wrapper pause__wrapper--score">
+              <img
+                src="score-icon.svg"
+                alt="score icon"
+                class="paused__score-img" />
+              <span class="paused__score"></span>
+            </div>
+          </div>
+          <div class="menu-nav__item">
+            <div class="paused__text">Best</div>
+            <div class="pause__wrapper">
+              <img
+                src="medal-icon.svg"
+                alt="medal icon"
+                class="paused__best-result-img" />
+              <span class="paused__best-result"></span>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <!-- Countdown -->
+      <div class="countdown"></div>
+      <!-- Main Menu -->
+      <div class="main-menu">
+        <div class="main-menu__content">
+          <h1 class="main-menu__title">
+            <span class="bohdan">Bohdan</span>
+            <span>Teslenko</span>
+          </h1>
+          <ul class="main-menu__navigation">
+            <li class="main-menu__item" id="main-menu__continue">Continue</li>
+            <li
+              class="main-menu__item main-menu__item--chosen"
+              id="main-menu__play">
+              Play
+            </li>
+            <li class="main-menu__item" id="main-menu__set-game">Set Game</li>
+            <li class="main-menu__item" id="main-menu__options">Options</li>
+          </ul>
+          <ul class="main-menu__socials">
+            <li class="main-menu__link">
+              <img src="github.svg" alt="github icon" class="link-icon" />
+            </li>
+            <li class="main-menu__link">
+              <img
+                src="linked.svg"
+                alt="linkedIn icon"
+                class="main-menu__link__linked" />
+            </li>
+            <li class="main-menu__link">
+              <img src="gmail.svg" alt="mail icon" class="link-icon" />
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="options-container">
+        <div class="options">
+          <div class="options__title-container">
+            <div class="paused-decoration"></div>
+            <h1 class="options__title">Options</h1>
+            <div class="paused-decoration"></div>
+          </div>
+          <div class="options__item options__music">
+            <p class="options__item-title">Music</p>
+            <div class="options__choice-container">
+              <div
+                class="options__choice options__choice--on options__choice--chosen">
+                On
+              </div>
+              <div class="options__choice options__choice--off">Off</div>
+            </div>
+          </div>
+          <div class="options__item">
+            <p class="options__item-title">Show damage</p>
+            <div class="options__choice-container">
+              <div
+                class="options__choice options__choice--on options__choice--chosen">
+                On
+              </div>
+              <div class="options__choice options__choice--off">Off</div>
+            </div>
+          </div>
+          <div class="options__item">
+            <p class="options__item-title">Display enemy HP</p>
+            <div class="options__choice-container">
+              <div
+                class="options__choice options__choice--on options__choice--chosen">
+                On
+              </div>
+              <div class="options__choice options__choice--off">Off</div>
+            </div>
+          </div>
+          <div class="options__item">
+            <p class="options__item-title">Blood spash effect</p>
+            <div class="options__choice-container">
+              <div
+                class="options__choice options__choice--on options__choice--chosen">
+                On
+              </div>
+              <div class="options__choice options__choice--off">Off</div>
+            </div>
+          </div>
+          <div class="options__item">
+            <p class="options__item-title">Take drop automatically</p>
+            <div class="options__choice-container">
+              <div class="options__choice options__choice--on">On</div>
+              <div
+                class="options__choice options__choice--off options__choice--chosen">
+                Off
+              </div>
+            </div>
+          </div>
+          <div class="options__item">
+            <p class="options__item-title">Key to display enemy HP</p>
+            <button class="options__key" id="enemyHealthKey"></button>
+          </div>
+          <div class="options__item options__weapon-wheel">
+            <p class="options__item-title">Open Wheapon Wheel</p>
+            <button class="options__key" id="weaponWheelKey"></button>
+          </div>
+          <div class="options__item">
+            <p class="options__item-title">Quick Punch</p>
+            <button class="options__key" id="punchKey"></button>
+          </div>
+          <div class="options__item">
+            <p class="options__item-title">Slice Forward</p>
+            <button class="options__key" id="sliceKey"></button>
+          </div>
+          <div class="options__item">
+            <p class="options__item-title">Build a Wall</p>
+            <button class="options__key" id="wallKey"></button>
+          </div>
+          <div class="options__item">
+            <p class="options__item-title">Throw Grenade</p>
+            <button class="options__key" id="grenadeKey"></button>
+          </div>
+          <div class="options__item">
+            <p class="options__item-title">Build a Turret</p>
+            <button class="options__key" id="turretKey"></button>
+          </div>
+          <div class="options__item">
+            <p class="options__item-title">Utilise Energy Drink</p>
+            <button class="options__key" id="energyDrinkKey"></button>
+          </div>
+          <div class="options__item">
+            <p class="options__item-title">Open/take</p>
+            <button class="options__key" id="takeKey"></button>
+          </div>
+          <div class="options__item">
+            <p class="options__item-title">Reload Weapon</p>
+            <button class="options__key" id="reloadKey"></button>
+          </div>
+          <div class="options__item">
+            <p class="options__item-title">Open music player window</p>
+            <button class="options__key" id="musicPlayerKey"></button>
+          </div>
+        </div>
+        <div class="options-close">Close/Save</div>
+        <div class="options-reset">Reset</div>
+      </div>
+      <!-- Music Player -->
+      <aside class="music-player">
+        <nav class="music-nav">
+          <div class="music-nav__time"></div>
+          <div class="music-nav__close">
+            <img src="close.svg" alt="" class="music-nav__close-img" />
+          </div>
+          <div class="music-nav__container">
+            <div class="music-nav__connection">
+              <img
+                src="connection.svg"
+                alt="connection"
+                class="music-nav__connection-img" />
+            </div>
+            <div class="music-nav__wifi">
+              <img src="wifi.svg" alt="wifi" class="music-nav__wifi-img" />
+            </div>
+            <div class="music-nav__battery">
+              <img
+                src="battery.svg"
+                alt="battery"
+                class="music-nav__battery-img" />
+            </div>
+          </div>
+        </nav>
+        <div class="player__first">
+          <p class="music-nav__playlist">Playlist</p>
+          <div class="playlist__container">
+            <div class="playlist__item">
+              <div class="song__image">
+                <img src="Tourner-Dans.jpg" alt="album image" />
+              </div>
+              <div class="song__main">
+                <h2 class="song__singer">Indilla</h2>
+                <h3 class="song__name">Tourner Dans Le Vide</h3>
+              </div>
+              <p class="song__time">3:12</p>
+            </div>
+          </div>
+        </div>
+        <div class="current-song">
+          <div class="current-song__container">
+            <div class="current-song__image">
+              <img
+                src="Tourner-Dans.jpg"
+                alt="album icon"
+                class="current-song__icon" />
+            </div>
+            <div class="current-song__info">
+              <p class="current-song__name">song Name</p>
+              <p class="current-song__singer">Artist Name</p>
+            </div>
+            <div class="current-song__navigation">
+              <div class="navigation__previous">
+                <img
+                  src="arrow-left.svg"
+                  alt="previous song"
+                  class="navigation__previous-img" />
+              </div>
+              <div class="navigation__pause">
+                <img
+                  src="pause-song.svg"
+                  alt="pause"
+                  class="navigation__pause-img" />
+              </div>
+              <div class="navigation__next">
+                <img
+                  src="arrow-right.svg"
+                  alt="next song"
+                  class="navigation__next-img" />
+              </div>
+            </div>
+            <div class="current-song__slider"></div>
+          </div>
+        </div>
+        <div class="player__second">
+          <p class="details__now-playing">Now playing</p>
+          <div class="details__ablum-photo">
+            <img src="Tourner-Dans.jpg" alt="album photo" />
+          </div>
+          <div class="details__container">
+            <h2 class="details__song-name">Song name</h2>
+            <h3 class="details__artist">Artist</h3>
+          </div>
+          <div class="player__wrapper">
+            <div class="player__info-container">
+              <p class="player__current-time">00:34</p>
+              <p class="player__song-length">3:12</p>
+            </div>
+            <div class="player__container">
+              <div class="player__swipe-left">
+                <img
+                  src="arrow-left.svg"
+                  alt=""
+                  class="player__swipe-left-img" />
+              </div>
+              <div class="player__pause">
+                <img src="pause-song.svg" alt="" class="player__pause-img" />
+              </div>
+              <div class="player__swipe-right">
+                <img
+                  src="arrow-right.svg"
+                  alt=""
+                  class="player__swipe-right-img" />
+              </div>
+            </div>
+            <div class="player__second-navigation">
+              <div class="music__return-back">
+                <img
+                  src="return.svg"
+                  alt="return"
+                  class="player__return-back-img" />
+              </div>
+              <div class="music__download">
+                <img
+                  src="download.svg"
+                  alt="download"
+                  class="music__download-img" />
+              </div>
+              <div class="music__youtube">
+                <img
+                  src="youtube.svg"
+                  alt="youtube icon"
+                  class="music__youtube-img" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <nav class="nav-bar">
+        <div class="nav-bar__element nav-bar__music">
+          <div class="nav-bar__element music-notification__container">
+            <img
+              src="Tourner-Dans.jpg"
+              alt=""
+              class="music-notification__song-image" />
+            <div class="music-notification__content">
+              <p class="music-notification__song-name">Billie Ellish</p>
+              <p class="music-notification__singer">Song content</p>
+            </div>
+          </div>
+          <img src="music-off.svg" alt="music icon" class="music-icon" />
+        </div>
+        <div class="nav-bar__element nav-bar__color">
+          <img src="color.svg" alt="color icon" class="color-icon" />
+        </div>
+        <div class="nav-bar__element nav-bar__full-screen">
+          <img
+            src="full-screen.svg"
+            alt="fullscreen icon"
+            class="full-screen-icon" />
+        </div>
+        <div class="nav-bar__element nav-bar__pause">
+          <img src="pause.svg" alt="pause icon" class="pause-icon" />
+        </div>
+      </nav>
+      <div class="killed">Killed: <span class="killed-amount">0</span></div>
+      <div class="health-bar__circle">
+        <div class="health-bar__container"></div>
+        <div class="health">100</div>
+        <div class="score">0</div>
+        <div class="health-bar__inside-circle"></div>
+        <div class="mana-bar"></div>
+        <img src="mana.svg" alt="mana icon" class="mana-bar__icon" />
+        <div class="armor-bar"></div>
+        <img src="armor.svg" alt="armor icon" class="armor-bar__icon" />
+        <img src="health.svg" alt="health icon" class="health-bar__icon" />
+        <div class="mana-stash">
+          <span class="mana-stash__amount"></span>
+          <span class="mana-stash__amount"></span>
+          <div class="mana-stash__description-container">
+            <p class="mana-stash__text">+25 MANA</p>
+            <div class="right-click-container">
+              <p class="right-click">Right to take</p>
+              <img src="right-click.svg" alt="" class="right-click-img" />
+            </div>
+            <div class="stash-capacity-container">
+              <div class="mana-stash-remove-container">
+                <p class="mana-stash-remove-text">Left to remove</p>
+              </div>
+              <img src="remove.svg" class="mana-stash-remove-image" />
+              <p class="mana-stash-capacity"></p>
+              <img src="stash.svg" alt="" class="stash-capacity-img" />
+            </div>
+          </div>
+          <div class="mana-stash__description-container"></div>
+        </div>
+        <div class="exclamation-mark">
+          <img src="exclamation.svg" alt="" class="exclamation-mark__icon" />
+        </div>
+        <div class="no-stamina">
+          <img src="stamina.svg" alt="" class="no-stamina-img" />
+        </div>
+        <div class="health-stash">
+          <span class="health-stash__amount"></span>
+          <div class="health-stash__description-container">
+            <p class="health-stash__text">+25 HP</p>
+            <div class="right-click-container">
+              <p class="right-click">Right to take</p>
+              <img src="right-click.svg" alt="" class="right-click-img" />
+            </div>
+            <div class="stash-capacity-container">
+              <div class="mana-stash-remove-container">
+                <p class="mana-stash-remove-text">Left to remove</p>
+              </div>
+              <img src="remove.svg" class="mana-stash-remove-image" />
+              <p class="health-stash-capacity">5/10</p>
+              <img src="stash.svg" alt="" class="stash-capacity-img" />
+            </div>
+          </div>
+        </div>
+        <div class="stamina-bar"></div>
+        <img src="stamina.svg" alt="" class="stamina-bar__icon" />
+      </div>
+      <div class="timer-bar">
+        <div class="timer">0:00</div>
+      </div>
+      <div class="weapon-section__container">
+        <div class="weapon-section">
+          <img id="shotgun" src="shotgun.png" alt="weapon" />
+        </div>
+        <div class="weapon-section">
+          <img id="automatic" src="automatic.png" alt="weapon" />
+        </div>
+        <div class="weapon-section">
+          <img id="sniper" src="sniper.png" alt="weapon" />
+        </div>
+        <div class="weapon-section" id="minigunSection">
+          <img id="minigun" src="minigun.png" alt="weapon" />
+          <p id="minigunStorage"></p>
+        </div>
+        <div class="weapon-section__exit"></div>
+        <div class="weapon-section__inside">
+          <img src="punch.svg" id="punch" alt="punch-weapon" />
+        </div>
+      </div>
+      <div class="weapon-stats__container">
+        <div class="weapon-stats__item">
+          <div class="weapon-stats__name">Magazine size</div>
+          <p class="weapon-stats__value" id="statsAmmo">200</p>
+        </div>
+        <div class="weapon-stats__item">
+          <div class="weapon-stats__name">Damage</div>
+          <div class="weapon-stats__bar" id="statsDamage"></div>
+        </div>
+        <div class="weapon-stats__item">
+          <div class="weapon-stats__name">Fire rate</div>
+          <div class="weapon-stats__bar" id="statsFireRate"></div>
+        </div>
+        <div class="weapon-stats__item">
+          <div class="weapon-stats__name">Reload</div>
+          <div class="weapon-stats__bar" id="statsReload"></div>
+        </div>
+        <div class="weapon-stats__item">
+          <div class="weapon-stats__name">Accuracy</div>
+          <div class="weapon-stats__bar" id="statsAccuracy"></div>
+        </div>
+        <div class="weapon-stats__item">
+          <div class="weapon-stats__name">Range</div>
+          <div class="weapon-stats__bar" id="statsRange"></div>
+        </div>
+        <div class="weapon-stats__item">
+          <div class="weapon-stats__name">Weight</div>
+          <div class="weapon-stats__bar" id="statsWeight"></div>
+        </div>
+      </div>
+      <div class="super-power__numbers">
+        <div class="super-power__numbers-top-alt">Alt + key</div>
+        <div class="super-power__numbers-top">
+          <div class="super-power" id="top1">
+            <div class="tint" id="top1Tint"></div>
+            <span class="super-power__key" id="top1Key">1</span>
+            <span class="super-power__cooldown" id="top1Cooldown"></span>
+            <span class="super-power__mana" id="top1Mana">1</span>
+            <div class="super-power__description-container">
+              <h3 class="super-power__name"></h3>
+              <h4 class="super-power__description-text">Description</h4>
+              <div class="super-power__additional">
+                <p id="additional1"></p>
+                <p id="additional2"></p>
+              </div>
+              <div class="super-power__stats">
+                <div class="stats-item stats-duration">
+                  <img
+                    src="stats-duration.svg"
+                    alt="duration img"
+                    class="stats-duration__img" />
+                  <div class="stats-duration__value"></div>
+                </div>
+                <div class="stats-item stats-cooldown">
+                  <img
+                    src="stats-cooldown.svg"
+                    alt="cooldown img"
+                    class="stats-duration__img" />
+                  <div class="stats-cooldown__value">10</div>
+                </div>
+                <div class="stats-item stats-mana">
+                  <img
+                    src="stats-mana.svg"
+                    alt="mana img"
+                    class="stats-duration__img" />
+                  <div class="stats-mana__value"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="super-power" id="top2">
+            <div class="tint" id="top2Tint"></div>
+            <span class="super-power__key" id="top2Key">2</span>
+            <span class="super-power__cooldown" id="top2Cooldown"></span>
+            <span class="super-power__mana" id="top2Mana">2</span>
+            <div class="super-power__description-container">
+              <h3 class="super-power__name"></h3>
+              <h4 class="super-power__description-text"></h4>
+              <div class="super-power__additional">
+                <p id="additional1"></p>
+                <p id="additional2"></p>
+                <p id="additional3"></p>
+              </div>
+              <div class="super-power__stats">
+                <div class="stats-item stats-duration">
+                  <img
+                    src="stats-duration.svg"
+                    alt="duration img"
+                    class="stats-duration__img" />
+                  <div class="stats-duration__value"></div>
+                </div>
+                <div class="stats-item stats-cooldown">
+                  <img
+                    src="stats-cooldown.svg"
+                    alt="cooldown img"
+                    class="stats-duration__img" />
+                  <div class="stats-cooldown__value"></div>
+                </div>
+                <div class="stats-item stats-mana">
+                  <img
+                    src="stats-mana.svg"
+                    alt="mana img"
+                    class="stats-duration__img" />
+                  <div class="stats-mana__value"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="super-power" id="top3">
+            <div class="tint" id="top3Tint"></div>
+            <span class="super-power__key" id="top3Key">3</span>
+            <span class="super-power__cooldown" id="top3Cooldown"></span>
+            <span class="super-power__mana" id="top3Mana">3</span>
+            <div class="super-power__description-container">
+              <h3 class="super-power__name"></h3>
+              <h4 class="super-power__description-text"></h4>
+              <div class="super-power__additional">
+                <p id="additional1"></p>
+                <p id="additional2"></p>
+                <p id="additional3"></p>
+              </div>
+              <div class="super-power__stats">
+                <div class="stats-item stats-duration">
+                  <img
+                    src="stats-duration.svg"
+                    alt="duration img"
+                    class="stats-duration__img" />
+                  <div class="stats-duration__value"></div>
+                </div>
+                <div class="stats-item stats-cooldown">
+                  <img
+                    src="stats-cooldown.svg"
+                    alt="cooldown img"
+                    class="stats-duration__img" />
+                  <div class="stats-cooldown__value"></div>
+                </div>
+                <div class="stats-item stats-mana">
+                  <img
+                    src="stats-mana.svg"
+                    alt="mana img"
+                    class="stats-duration__img" />
+                  <div class="stats-mana__value"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="super-power" id="top4">
+            <div class="tint" id="top4Tint"></div>
+            <span class="super-power__key" id="top4Key">4</span>
+            <span class="super-power__cooldown" id="top4Cooldown"></span>
+            <span class="super-power__mana" id="top4Mana">4</span>
+            <div class="super-power__description-container">
+              <h3 class="super-power__name"></h3>
+              <h4 class="super-power__description-text"></h4>
+              <div class="super-power__additional">
+                <p id="additional1"></p>
+                <p id="additional2"></p>
+                <p id="additional3"></p>
+              </div>
+              <div class="super-power__stats">
+                <div class="stats-item stats-duration">
+                  <img
+                    src="stats-duration.svg"
+                    alt="duration img"
+                    class="stats-duration__img" />
+                  <div class="stats-duration__value"></div>
+                </div>
+                <div class="stats-item stats-cooldown">
+                  <img
+                    src="stats-cooldown.svg"
+                    alt="cooldown img"
+                    class="stats-duration__img" />
+                  <div class="stats-cooldown__value"></div>
+                </div>
+                <div class="stats-item stats-mana">
+                  <img
+                    src="stats-mana.svg"
+                    alt="mana img"
+                    class="stats-duration__img" />
+                  <div class="stats-mana__value"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="super-power" id="top5">
+            <div class="tint" id="top5Tint"></div>
+            <span class="super-power__key" id="top5Key">5</span>
+            <span class="super-power__cooldown" id="top5Cooldown"></span>
+            <span class="super-power__mana" id="top5Mana">5</span>
+            <div class="super-power__description-container">
+              <h3 class="super-power__name"></h3>
+              <h4 class="super-power__description-text"></h4>
+              <div class="super-power__additional">
+                <p id="additional1"></p>
+                <p id="additional2"></p>
+                <p id="additional3"></p>
+              </div>
+              <div class="super-power__stats">
+                <div class="stats-item stats-duration">
+                  <img
+                    src="stats-duration.svg"
+                    alt="duration img"
+                    class="stats-duration__img" />
+                  <div class="stats-duration__value"></div>
+                </div>
+                <div class="stats-item stats-cooldown">
+                  <img
+                    src="stats-cooldown.svg"
+                    alt="cooldown img"
+                    class="stats-duration__img" />
+                  <div class="stats-cooldown__value"></div>
+                </div>
+                <div class="stats-item stats-mana">
+                  <img
+                    src="stats-mana.svg"
+                    alt="mana img"
+                    class="stats-duration__img" />
+                  <div class="stats-mana__value"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="super-power" id="top6">
+            <div class="tint" id="top6Tint"></div>
+            <span class="super-power__key" id="top6Key">6</span>
+            <span class="super-power__cooldown" id="top6Cooldown"></span>
+            <span class="super-power__mana" id="top6Mana">6</span>
+            <div class="super-power__description-container">
+              <h3 class="super-power__name"></h3>
+              <h4 class="super-power__description-text"></h4>
+              <div class="super-power__additional">
+                <p id="additional1"></p>
+                <p id="additional2"></p>
+                <p id="additional3"></p>
+              </div>
+              <div class="super-power__stats">
+                <div class="stats-item stats-duration">
+                  <img
+                    src="stats-duration.svg"
+                    alt="duration img"
+                    class="stats-duration__img" />
+                  <div class="stats-duration__value"></div>
+                </div>
+                <div class="stats-item stats-cooldown">
+                  <img
+                    src="stats-cooldown.svg"
+                    alt="cooldown img"
+                    class="stats-duration__img" />
+                  <div class="stats-cooldown__value"></div>
+                </div>
+                <div class="stats-item stats-mana">
+                  <img
+                    src="stats-mana.svg"
+                    alt="mana img"
+                    class="stats-duration__img" />
+                  <div class="stats-mana__value"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="super-power" id="top7">
+            <div class="tint" id="top7Tint"></div>
+            <span class="super-power__key" id="top7Key">7</span>
+            <span class="super-power__cooldown" id="top7Cooldown"></span>
+            <span class="super-power__mana" id="top7Mana">7</span>
+            <div class="super-power__description-container">
+              <h3 class="super-power__name"></h3>
+              <h4 class="super-power__description-text"></h4>
+              <div class="super-power__additional">
+                <p id="additional1"></p>
+                <p id="additional2"></p>
+                <p id="additional3"></p>
+              </div>
+              <div class="super-power__stats">
+                <div class="stats-item stats-duration">
+                  <img
+                    src="stats-duration.svg"
+                    alt="duration img"
+                    class="stats-duration__img" />
+                  <div class="stats-duration__value"></div>
+                </div>
+                <div class="stats-item stats-cooldown">
+                  <img
+                    src="stats-cooldown.svg"
+                    alt="cooldown img"
+                    class="stats-duration__img" />
+                  <div class="stats-cooldown__value"></div>
+                </div>
+                <div class="stats-item stats-mana">
+                  <img
+                    src="stats-mana.svg"
+                    alt="mana img"
+                    class="stats-duration__img" />
+                  <div class="stats-mana__value"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="super-power__numbers-bottom">
+          <div class="super-power" id="bottom1">
+            <div class="tint" id="bottom1Tint"></div>
+            <span class="super-power__key" id="bottom1Key">1</span>
+            <span class="super-power__cooldown" id="bottom1Cooldown"></span>
+            <span class="super-power__mana" id="bottom1Mana">1</span>
+            <div class="super-power__description-container">
+              <h3 class="super-power__name"></h3>
+              <h4 class="super-power__description-text"></h4>
+              <div class="super-power__additional">
+                <p id="additional1"></p>
+                <p id="additional2"></p>
+                <p id="additional3"></p>
+              </div>
+              <div class="super-power__stats">
+                <div class="stats-item stats-duration">
+                  <img
+                    src="stats-duration.svg"
+                    alt="duration img"
+                    class="stats-duration__img" />
+                  <div class="stats-duration__value"></div>
+                </div>
+                <div class="stats-item stats-cooldown">
+                  <img
+                    src="stats-cooldown.svg"
+                    alt="cooldown img"
+                    class="stats-duration__img" />
+                  <div class="stats-cooldown__value"></div>
+                </div>
+                <div class="stats-item stats-mana">
+                  <img
+                    src="stats-mana.svg"
+                    alt="mana img"
+                    class="stats-duration__img" />
+                  <div class="stats-mana__value"></div>
+                </div>
+              </div>
+            </div>
+            <div class="super-power__image-container"></div>
+          </div>
+          <div class="super-power" id="bottom2">
+            <div class="tint" id="bottom2Tint"></div>
+            <span class="super-power__key" id="bottom2Key">2</span>
+            <span class="super-power__cooldown" id="bottom2Cooldown"></span>
+            <span class="super-power__mana" id="bottom2Mana">2</span>
+            <div class="super-power__description-container">
+              <h3 class="super-power__name"></h3>
+              <h4
+                class="super-power__description-text"
+                id="bottom2Description"></h4>
+              <div class="super-power__additional">
+                <p id="additional1"></p>
+                <p id="additional2"></p>
+                <p id="additional3"></p>
+              </div>
+              <div class="super-power__stats">
+                <div class="stats-item stats-duration">
+                  <img
+                    src="stats-duration.svg"
+                    alt="duration img"
+                    class="stats-duration__img" />
+                  <div class="stats-duration__value"></div>
+                </div>
+                <div class="stats-item stats-cooldown">
+                  <img
+                    src="stats-cooldown.svg"
+                    alt="cooldown img"
+                    class="stats-duration__img" />
+                  <div class="stats-cooldown__value"></div>
+                </div>
+                <div class="stats-item stats-mana">
+                  <img
+                    src="stats-mana.svg"
+                    alt="mana img"
+                    class="stats-duration__img" />
+                  <div class="stats-mana__value"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="super-power" id="bottom3">
+            <div class="tint" id="bottom3Tint"></div>
+            <span class="super-power__key" id="bottom3Key">3</span>
+            <span class="super-power__cooldown" id="bottom3Cooldown"></span>
+            <span class="super-power__mana" id="bottom3Mana">3</span>
+            <div class="super-power__description-container">
+              <h3 class="super-power__name"></h3>
+              <h4 class="super-power__description-text"></h4>
+              <div class="super-power__additional">
+                <p id="additional1"></p>
+                <p id="additional2"></p>
+                <p id="additional3"></p>
+              </div>
+              <div class="super-power__stats">
+                <div class="stats-item stats-duration">
+                  <img
+                    src="stats-duration.svg"
+                    alt="duration img"
+                    class="stats-duration__img" />
+                  <div class="stats-duration__value"></div>
+                </div>
+                <div class="stats-item stats-cooldown">
+                  <img
+                    src="stats-cooldown.svg"
+                    alt="cooldown img"
+                    class="stats-duration__img" />
+                  <div class="stats-cooldown__value"></div>
+                </div>
+                <div class="stats-item stats-mana">
+                  <img
+                    src="stats-mana.svg"
+                    alt="mana img"
+                    class="stats-duration__img" />
+                  <div class="stats-mana__value"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="super-power" id="bottom4">
+            <div class="tint" id="bottom4Tint"></div>
+            <span class="super-power__key" id="bottom4Key">4</span>
+            <span class="super-power__cooldown" id="bottom4Cooldown"></span>
+            <span class="super-power__mana" id="bottom4Mana"></span>
+            <div class="super-power__description-container">
+              <h3 class="super-power__name"></h3>
+              <h4
+                class="super-power__description-text"
+                id="bottom4Description"></h4>
+              <div class="super-power__additional">
+                <p id="additional1"></p>
+                <p id="additional2"></p>
+                <p id="additional3"></p>
+              </div>
+              <div class="super-power__stats">
+                <div class="stats-item stats-duration">
+                  <img
+                    src="stats-duration.svg"
+                    alt="duration img"
+                    class="stats-duration__img" />
+                  <div class="stats-duration__value"></div>
+                </div>
+                <div class="stats-item stats-cooldown">
+                  <img
+                    src="stats-cooldown.svg"
+                    alt="cooldown img"
+                    class="stats-duration__img" />
+                  <div class="stats-cooldown__value"></div>
+                </div>
+                <div class="stats-item stats-mana">
+                  <img
+                    src="stats-mana.svg"
+                    alt="mana img"
+                    class="stats-duration__img" />
+                  <div class="stats-mana__value"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="super-power" id="bottom5">
+            <div class="tint" id="bottom5Tint"></div>
+            <span class="super-power__key" id="bottom5Key">5</span>
+            <span class="super-power__cooldown" id="bottom5Cooldown"></span>
+            <span class="super-power__mana" id="bottom5Mana">5</span>
+            <div class="super-power__description-container">
+              <h3 class="super-power__name"></h3>
+              <h4 class="super-power__description-text"></h4>
+              <div class="super-power__additional">
+                <p id="additional1"></p>
+                <p id="additional2"></p>
+                <p id="additional3"></p>
+              </div>
+              <div class="super-power__stats">
+                <div class="stats-item stats-duration">
+                  <img
+                    src="stats-duration.svg"
+                    alt="duration img"
+                    class="stats-duration__img" />
+                  <div class="stats-duration__value"></div>
+                </div>
+                <div class="stats-item stats-cooldown">
+                  <img
+                    src="stats-cooldown.svg"
+                    alt="cooldown img"
+                    class="stats-duration__img" />
+                  <div class="stats-cooldown__value"></div>
+                </div>
+                <div class="stats-item stats-mana">
+                  <img
+                    src="stats-mana.svg"
+                    alt="mana img"
+                    class="stats-duration__img" />
+                  <div class="stats-mana__value"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="super-power" id="bottom6">
+            <div class="tint" id="bottom6Tint"></div>
+            <span class="super-power__key" id="bottom6Key">6</span>
+            <span class="super-power__cooldown" id="bottom6Cooldown"></span>
+            <span class="super-power__mana" id="bottom6Mana">6</span>
+            <div class="super-power__description-container">
+              <h3 class="super-power__name"></h3>
+              <h4 class="super-power__description-text"></h4>
+              <div class="super-power__additional">
+                <p id="additional1"></p>
+                <p id="additional2"></p>
+                <p id="additional3"></p>
+              </div>
+              <div class="super-power__stats">
+                <div class="stats-item stats-duration">
+                  <img
+                    src="stats-duration.svg"
+                    alt="duration img"
+                    class="stats-duration__img" />
+                  <div class="stats-duration__value"></div>
+                </div>
+                <div class="stats-item stats-cooldown">
+                  <img
+                    src="stats-cooldown.svg"
+                    alt="cooldown img"
+                    class="stats-duration__img" />
+                  <div class="stats-cooldown__value"></div>
+                </div>
+                <div class="stats-item stats-mana">
+                  <img
+                    src="stats-mana.svg"
+                    alt="mana img"
+                    class="stats-duration__img" />
+                  <div
+                    class="stats-mana__value stats-mana__value--bottom6"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="super-power" id="bottom7">
+            <div class="tint" id="bottom7Tint"></div>
+            <span class="super-power__key" id="bottom7Key">7</span>
+            <span class="super-power__cooldown" id="bottom7Cooldown"></span>
+            <span class="super-power__mana" id="bottom7Mana">7</span>
+            <div class="super-power__description-container">
+              <h3 class="super-power__name"></h3>
+              <h4 class="super-power__description-text"></h4>
+              <div class="super-power__additional">
+                <p id="additional1"></p>
+                <p id="additional2"></p>
+                <p id="additional3"></p>
+              </div>
+              <div class="super-power__stats">
+                <div class="stats-item stats-duration">
+                  <img
+                    src="stats-duration.svg"
+                    alt="duration img"
+                    class="stats-duration__img" />
+                  <div class="stats-duration__value"></div>
+                </div>
+                <div class="stats-item stats-cooldown">
+                  <img
+                    src="stats-cooldown.svg"
+                    alt="cooldown img"
+                    class="stats-duration__img" />
+                  <div class="stats-cooldown__value"></div>
+                </div>
+                <div class="stats-item stats-mana">
+                  <img
+                    src="stats-mana.svg"
+                    alt="mana img"
+                    class="stats-duration__img" />
+                  <div
+                    class="stats-mana__value stats-mana__value--bottom7"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="super-power__keys">
+          <div class="super-power" id="side1">
+            <span class="super-power__key" id="side1key"></span>
+            <span class="super-power__cooldown" id="side1Cooldown"></span>
+            <div class="super-power__description-container">
+              <h3 class="super-power__name"></h3>
+              <h4 class="super-power__description-text"></h4>
+              <div class="super-power__additional">
+                <p id="additional1"></p>
+                <p id="additional2"></p>
+                <p id="additional3"></p>
+              </div>
+              <div class="super-power__stats">
+                <div class="stats-item stats-cooldown">
+                  <img
+                    src="stats-cooldown.svg"
+                    alt="cooldown img"
+                    class="stats-duration__img" />
+                  <div class="stats-cooldown__value"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="super-power" id="side2">
+            <span class="super-power__key" id="side2key"></span>
+            <span class="wall-amount"></span>
+            <div class="super-power__description-container">
+              <h3 class="super-power__name"></h3>
+              <h4 class="super-power__description-text"></h4>
+              <div class="super-power__additional">
+                <p id="additional1"></p>
+                <p id="additional2"></p>
+                <p id="additional3"></p>
+              </div>
+              <div class="super-power__stats">
+                <div class="stats-item stats-duration">
+                  <img
+                    src="stats-duration.svg"
+                    alt="duration img"
+                    class="stats-duration__img" />
+                  <div class="stats-duration__value"></div>
+                </div>
+                <div class="stats-item stats-cooldown">
+                  <img
+                    src="stats-cooldown.svg"
+                    alt="cooldown img"
+                    class="stats-duration__img" />
+                  <div class="stats-cooldown__value"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="super-power" id="side3">
+            <span class="super-power__key" id="side3key"></span>
+            <span class="grenade-amount"></span>
+            <div class="super-power__description-container">
+              <h3 class="super-power__name"></h3>
+              <h4 class="super-power__description-text"></h4>
+              <div class="super-power__additional">
+                <p id="additional1"></p>
+                <p id="additional2"></p>
+                <p id="additional3"></p>
+              </div>
+              <div class="super-power__stats">
+                <div class="stats-item stats-duration">
+                  <img
+                    src="stats-duration.svg"
+                    alt="duration img"
+                    class="stats-duration__img" />
+                  <div class="stats-duration__value"></div>
+                </div>
+                <div class="stats-item stats-cooldown">
+                  <img
+                    src="stats-cooldown.svg"
+                    alt="cooldown img"
+                    class="stats-duration__img" />
+                  <div class="stats-cooldown__value"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="super-power" id="side4">
+            <span class="super-power__key" id="side4key"></span>
+            <span class="super-power__cooldown" id="side4Cooldown"></span>
+            <span class="turret-amount"></span>
+            <div class="super-power__description-container">
+              <h3 class="super-power__name"></h3>
+              <h4 class="super-power__description-text"></h4>
+              <div class="super-power__additional">
+                <p id="additional1"></p>
+                <p id="additional2"></p>
+                <p id="additional3"></p>
+              </div>
+              <div class="super-power__stats">
+                <div class="stats-item stats-duration">
+                  <img
+                    src="stats-duration.svg"
+                    alt="duration img"
+                    class="stats-duration__img" />
+                  <div class="stats-duration__value"></div>
+                </div>
+                <div class="stats-item stats-cooldown">
+                  <img
+                    src="stats-cooldown.svg"
+                    alt="cooldown img"
+                    class="stats-duration__img" />
+                  <div class="stats-cooldown__value"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="super-power" id="side5">
+            <span class="super-power__key" id="side5key"></span>
+            <span class="super-power__cooldown" id="side5Cooldown"></span>
+            <span class="energy-drink-amount"></span>
+            <div class="super-power__description-container">
+              <h3 class="super-power__name"></h3>
+              <h4 class="super-power__description-text"></h4>
+              <div class="super-power__additional">
+                <p id="additional1"></p>
+                <p id="additional2"></p>
+                <p id="additional3"></p>
+              </div>
+              <div class="super-power__stats">
+                <div class="stats-item stats-duration">
+                  <img
+                    src="stats-duration.svg"
+                    alt="duration img"
+                    class="stats-duration__img" />
+                  <div class="stats-duration__value"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="super-power" id="side5">q</div> -->
+        </div>
+      </div>
+
+      <div class="arcenal-bar">
+        <p class="arsenal-item" id="weapon-name"></p>
+        <div class="arsenal-item" id="weapon-img"></div>
+        <div class="arcenal-item" id="ammo">30</div>
+        <div class="arcenal-item">
+          <img src="ammo.svg" alt="" class="arcenal-item__ammo-img" />
+        </div>
+      </div>
+      <canvas class="game"></canvas>
+    </div>
+    <script src="events.js"></script>
+    <script src="stuff.js"></script>
+    <script src="superpower.js"></script>
+    <script src="bullet.js"></script>
+    <script src="weapon.js"></script>
+    <script src="enemy.js"></script>
+    <script src="player.js"></script>
+    <script src="background.js"></script>
+    <script src="drop.js"></script>
+    <script src="particles.js"></script>
+    <script src="wall.js"></script>
+    <script src="turret.js"></script>
+    <script src="boss.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
